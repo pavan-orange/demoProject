@@ -1,10 +1,8 @@
 const User = require("../models/userModel")
 const blogDataModel = require("../models/blogData")
 const path = require("path");
-// const fs = require("fs")
-// const express = require("express")
-// const app = express()
-// app.use(express.static('views')) 
+const CertificateUser = require("../models/AddCertificate");
+const blogVideoSchemaUser = require("../models/addBlogVideo");
 
 module.exports.viewUserBlog = async (req, res) => {
     // step to add pagination (with onj destructuring)
@@ -51,6 +49,34 @@ module.exports.addBlog = async (req, res) => {
             userData
         }
     })
+}
+module.exports.addCertificate = async (req, res) => {
+    const serverHost = `${req.protocol}://${req.get('host')}`;
+    const fileUrl = `${serverHost}/uploads/${req?.file?.filename}`;
+    console.log("fileUrl", fileUrl)
+    const certificateUser = new CertificateUser({ certificatePictureURL: fileUrl })
+    await certificateUser.save()
+    res.status(200).json({
+        status: "success",
+        message: "File hsa been successfully stored in DataBase",
+        result: {
+            fileUrl
+        }
+    });
+}
+module.exports.addBlogVideo = async (req, res) => {
+    const serverHost = `${req.protocol}://${req.get('host')}`;
+    const fileUrl = `${serverHost}/uploads/${req?.file?.filename}`;
+    console.log("fileUrl", fileUrl)
+    const certificateUser = new blogVideoSchemaUser({ videoURL: fileUrl })
+    await certificateUser.save()
+    res.status(200).json({
+        status: "success",
+        message: "File hsa been successfully stored in DataBase",
+        result: {
+            fileUrl
+        }
+    });
 }
 module.exports.updateBlogData = async (req, res) => {
     const id = req.params.id
