@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const blogVideoSchema = new mongoose.Schema({
     videoURL: {
         type: String,

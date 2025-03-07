@@ -24,10 +24,10 @@ mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTo
 }).catch((error) => {
     console.log("Something goes wrong during API Connection:", error)
 })
-const data = JSON.parse(fs.readFileSync('services/data.json', 'utf-8')); 
+const data = JSON.parse(fs.readFileSync('services/data.json', 'utf-8'));
 const importData = async () => {
     try {
-        await blogDataModel.create(data); 
+        await blogDataModel.create(data);
         console.log('Data successfully imported');
         process.exit();
     } catch (error) {
@@ -40,15 +40,13 @@ const importData = async () => {
 app.use("/demo/v1/user", userRoute)
 app.use("/demo/v1/auth", authRoute)
 app.use("/demo/v1/product", addProductRoute)
-
-  app.listen(process.env.PORT || 8000, function (err) {
+app.listen(process.env.PORT || 8000, function (err) {
     if (err) {
         console.log("Somethig went wrong to run the server")
         return
     }
     console.log(`Server UP and fire at port ${process.env.PORT}`)
 })
-
 // Socket.io setup
 // const express = require('express');
 // const { createServer } = require('node:http');
@@ -68,7 +66,6 @@ app.use("/demo/v1/product", addProductRoute)
 //     }).catch((error) => {
 //         console.log("Something goes wrong during API Connection:", error)
 //     })
-
 // app.get('/', (req, res) => {
 //     res.sendFile(join(__dirname, '/views/index.html'));
 // });
@@ -95,7 +92,6 @@ app.use("/demo/v1/product", addProductRoute)
 //             return console.error("Error saving message:", error);
 //         }
 //     });
-    
 //   if (!socket.recovered) {
 //     // if the connection state recovery was not successful
 //     try {
@@ -111,7 +107,6 @@ app.use("/demo/v1/product", addProductRoute)
 //       // something went wrong
 //     }
 //   }
-
 // });
 // server.listen(8000, () => {
 //     console.log('server running at http://localhost:8000');

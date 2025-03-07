@@ -16,5 +16,5 @@ const blogDataSchema = new mongoose.Schema({
         type: String
     }
 })
-const blogDataModel = mongoose.model('blogData',blogDataSchema);
+const blogDataModel = mongoose.model('blogData', blogDataSchema);
 module.exports = blogDataModel;

@@ -8,7 +8,7 @@ const productTwoSchema = new mongoose.Schema({
     product_name_2: {
         type: String,
         required: [true, 'Plese enter product name_2 ):']
-    }, 
+    },
     product_description_2: {
         type: String,
         required: [true, 'Plese enter product description_2 ):']

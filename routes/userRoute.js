@@ -19,7 +19,7 @@ const upload = require("../middleware/multer")
 router.route("/viewBlog").get(validateUser, userController.viewUserBlog);
 router.route("/search-blog").get(validateUser, userController.searchBlog);
 router.route("/blogPage").get(userController.getBlogDataPage);
-router.route("/addBlog").post( validateUser, userController.addBlog);
+router.route("/addBlog").post(validateUser, userController.addBlog);
 router.route("/photos/upload").post(upload.single('avatar'), userController.addCertificate);
 router.route("/vedio/upload").post(upload.single("blogVedio"), userController.addBlogVideo);
 router.route("/deleteBlog/:id").delete(validateUser, userController.deleteBlogData);

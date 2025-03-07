@@ -12,7 +12,6 @@ module.exports.addProductOne = async (req, res) => {
         }
     })
 }
-
 module.exports.addProductTwo = async (req, res) => {
     const userData = req.body;
     const user = new productTwoUser(userData);

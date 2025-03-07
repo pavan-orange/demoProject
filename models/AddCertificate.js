@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const certificateSchema = new mongoose.Schema({
     certificatePictureURL: {
         type: String
@@ -8,10 +7,10 @@ const certificateSchema = new mongoose.Schema({
         type: String,
         title: String
     },
-    cretedAt:{
+    cretedAt: {
         type: Date,
         default: Date.now()
     }
 })
-const CertificateUser = mongoose.model('CertificateUser',certificateSchema);
+const CertificateUser = mongoose.model('CertificateUser', certificateSchema);
 module.exports = CertificateUser;

@@ -20,7 +20,6 @@ module.exports.userSignUp = async (req, res) => {
         }
     })
 }
-
 module.exports.userLogin = async (req, res, next) => {
     //1. get req.body
     const userData = req.body;
@@ -45,8 +44,6 @@ module.exports.userLogin = async (req, res, next) => {
         name: "Ritik",
         Age: "18"
     };
-    
-        
     res.cookie("userData", JSON.stringify(users),{
         httpOnly: false,
         secure: false,
@@ -60,7 +57,5 @@ module.exports.userLogin = async (req, res, next) => {
         }
     })
 }
-
 module.exports.updatePassword = async (req, res) => {
-
 }    
