@@ -1,15 +1,20 @@
 const express = require("express");
 const fs = require('fs');
 const app = express();
-const bodyParser = require("body-parser")
-const userRoute = require("./routes/userRoute")
-const authRoute = require("./routes/authRoute")
-const addProductRoute = require("./routes/addProductRoute")
+const bodyParser = require("body-parser");
+const userRoute = require("./routes/userRoute");
+const authRoute = require("./routes/authRoute");
+const addProductRoute = require("./routes/addProductRoute");
 const blogDataModel = require("./models/blogData");
 var cookieParser = require('cookie-parser')
 const cors = require("cors")
 const mongoose = require("mongoose");
 var morgan = require('morgan');
+//Import the main Passport and Express-Session library
+const passport = require('passport')
+const session = require('express-session');
+const { error } = require("console");
+//Import the secondary "Strategy" library
 require('dotenv').config()
 // app level middleware
 app.use(express.json());
@@ -17,7 +22,9 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(express.urlencoded());
 app.use(morgan('tiny'))
+
 app.use(cors())
+
 // DB Connection
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log("Mongodb database connect successfully")
@@ -40,6 +47,23 @@ const importData = async () => {
 app.use("/demo/v1/user", userRoute)
 app.use("/demo/v1/auth", authRoute)
 app.use("/demo/v1/product", addProductRoute)
+
+// app.all( '*', (req, res, next) => {
+//     const err = new Error(`Can't find ${req.originalUrl} on the server`);
+//     err.status = 'fail';
+//     err.statusCode = 404;
+//     next(err)
+// })
+
+// // global error handling
+// app.use((error, req, res, next) => {
+//     error.statusCode = error.statusCode || 500;
+//     error.message = error.message || 'error'
+//     res.status(error.statusCode).json({
+//         status: error.statusCode,
+//         message: error.message
+//     })
+// })
 app.listen(process.env.PORT || 8000, function (err) {
     if (err) {
         console.log("Somethig went wrong to run the server")
